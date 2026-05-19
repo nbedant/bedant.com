@@ -1,0 +1,43 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const notes = (await getCollection("notes", ({ data }) => !data.draft)).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+);
+---
+
+<BaseLayout
+  title="Notes"
+  description="Short notes from Between Body and Meaning."
+>
+  <section class="page-header">
+    <p class="kicker">Notes</p>
+    <h1>Short observations, fragments, and working thoughts.</h1>
+    <p>
+      Notes are brief entries for ideas that deserve to be kept close before
+      they become essays, or perhaps instead of becoming essays at all.
+    </p>
+  </section>
+
+  <section class="archive-list" aria-label="Notes archive">
+    {
+      notes.map((note) => (
+        <a class="archive-item" href={`/notes/${note.slug}/`}>
+          <time datetime={note.data.pubDate.toISOString()}>
+            {note.data.pubDate.toLocaleDateString("en", {
+              month: "long",
+              day: "numeric",
+              year: "numeric",
+              timeZone: "UTC",
+            })}
+          </time>
+          <div>
+            <h2>{note.data.title}</h2>
+            <p>{note.data.description}</p>
+          </div>
+        </a>
+      ))
+    }
+  </section>
+</BaseLayout>
