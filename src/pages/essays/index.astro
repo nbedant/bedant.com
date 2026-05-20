@@ -13,10 +13,12 @@ const essays = (await getCollection("essays", ({ data }) => !data.draft)).sort(
 >
   <section class="page-header">
     <p class="kicker">Essays</p>
-    <h1>Longer reflections on care, suffering, and medicine.</h1>
+    <h1>Longer pieces, written slowly.</h1>
     <p>
-      Essays are the slowest pieces here: inquiries into grief, caregiving,
-      clinical life, psychology, and what it means to accompany another person.
+      Essays are the more deliberate pieces here: reflective arguments,
+      personal inquiries, and close observations about care, grief, psychology,
+      medicine, books, research, and the human questions that gather around
+      them.
     </p>
   </section>
 
@@ -35,6 +37,11 @@ const essays = (await getCollection("essays", ({ data }) => !data.draft)).sort(
           <div>
             <h2>{essay.data.title}</h2>
             <p>{essay.data.description}</p>
+            {
+              essay.data.tags.length > 0 && (
+                <span class="mini-tags">{essay.data.tags.join(" / ")}</span>
+              )
+            }
           </div>
         </a>
       ))

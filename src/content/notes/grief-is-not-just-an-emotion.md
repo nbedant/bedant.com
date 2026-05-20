@@ -2,6 +2,7 @@
 title: "Grief Is Not Just an Emotion"
 description: "A brief reflection on grief as attention, memory, and changed perception."
 pubDate: 2026-05-19
+tags: ["grief", "mind", "memory"]
 ---
 
 Grief is not only sadness. It can be a change in how the world appears.

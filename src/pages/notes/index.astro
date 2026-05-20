@@ -13,10 +13,11 @@ const notes = (await getCollection("notes", ({ data }) => !data.draft)).sort(
 >
   <section class="page-header">
     <p class="kicker">Notes</p>
-    <h1>Short observations, fragments, and working thoughts.</h1>
+    <h1>Fragments, reading notes, and working thoughts.</h1>
     <p>
-      Notes are brief entries for ideas that deserve to be kept close before
-      they become essays, or perhaps instead of becoming essays at all.
+      Notes are a flexible place for research marginalia, short reflections,
+      book passages, unfinished analogies, and small observations that may or
+      may not become essays later.
     </p>
   </section>
 
@@ -35,6 +36,11 @@ const notes = (await getCollection("notes", ({ data }) => !data.draft)).sort(
           <div>
             <h2>{note.data.title}</h2>
             <p>{note.data.description}</p>
+            {
+              note.data.tags.length > 0 && (
+                <span class="mini-tags">{note.data.tags.join(" / ")}</span>
+              )
+            }
           </div>
         </a>
       ))
