@@ -112,6 +112,26 @@ npm run build
 
 If the build passes, the post is valid and ready to commit.
 
+## Maintenance Mode
+
+Maintenance mode is controlled by one value in `src/site.config.ts`:
+
+```ts
+export const siteConfig = {
+  maintenanceMode: false,
+};
+```
+
+Use `maintenanceMode: true` when the site should temporarily show only the maintenance page. Use `maintenanceMode: false` to show the full site again.
+
+After changing this value, run:
+
+```bash
+npm run build
+```
+
+Then commit and deploy the change as usual. Maintenance mode does not delete any content; it only changes what the shared layout renders.
+
 ## Deploy
 
 Deployment is configured in `.github/workflows/deploy.yml`.
