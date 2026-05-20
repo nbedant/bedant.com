@@ -2,8 +2,9 @@
 import { getCollection } from "astro:content";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 
+const getEntryDate = (entry) => entry.data.date ?? entry.data.pubDate;
 const essays = (await getCollection("essays", ({ data }) => !data.draft)).sort(
-  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf(),
+  (a, b) => getEntryDate(b).valueOf() - getEntryDate(a).valueOf(),
 );
 ---
 
@@ -26,8 +27,8 @@ const essays = (await getCollection("essays", ({ data }) => !data.draft)).sort(
     {
       essays.map((essay) => (
         <a class="archive-item" href={`/essays/${essay.slug}/`}>
-          <time datetime={essay.data.pubDate.toISOString()}>
-            {essay.data.pubDate.toLocaleDateString("en", {
+          <time datetime={getEntryDate(essay).toISOString()}>
+            {getEntryDate(essay).toLocaleDateString("en", {
               month: "long",
               day: "numeric",
               year: "numeric",

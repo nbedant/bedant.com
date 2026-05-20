@@ -163,8 +163,8 @@ img {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 28px;
-  padding: 34px 0 20px;
+  gap: 30px;
+  padding: 32px 0 19px;
   border-bottom: 1px solid var(--header-border);
 }
 
@@ -180,23 +180,38 @@ img {
 }
 
 .site-mark {
-  display: grid;
-  gap: 3px;
+  display: inline-grid;
+  gap: 5px;
   text-decoration: none;
 }
 
 .site-name {
   color: var(--site-name);
-  font-size: 1.45rem;
+  font-size: 1.5rem;
   font-weight: 750;
   letter-spacing: 0;
   line-height: 1.05;
 }
 
 .site-project {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
   color: var(--muted);
-  font-size: 0.86rem;
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 0.68rem;
+  font-weight: 750;
+  letter-spacing: 0.14em;
   line-height: 1.25;
+  text-transform: uppercase;
+}
+
+.site-project::before {
+  content: "";
+  width: 24px;
+  height: 1px;
+  background: var(--brass);
+  opacity: 0.8;
 }
 
 .site-nav {
@@ -210,18 +225,18 @@ img {
 .theme-toggle {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: 7px;
   border: 1px solid var(--line-strong);
   border-radius: 999px;
   background: var(--surface);
   color: var(--walnut);
   cursor: pointer;
   font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  font-size: 0.78rem;
+  font-size: 0.72rem;
   font-weight: 750;
   letter-spacing: 0.06em;
   line-height: 1;
-  padding: 7px 9px 7px 8px;
+  padding: 6px 8px 6px 7px;
   text-transform: uppercase;
   transition: background 160ms ease, border-color 160ms ease, color 160ms ease;
 }
@@ -238,8 +253,8 @@ img {
 
 .theme-toggle-track {
   position: relative;
-  width: 30px;
-  height: 16px;
+  width: 28px;
+  height: 15px;
   border: 1px solid var(--line-strong);
   border-radius: 999px;
   background: rgba(17, 31, 73, 0.1);
@@ -249,8 +264,8 @@ img {
   position: absolute;
   top: 2px;
   left: 2px;
-  width: 10px;
-  height: 10px;
+  width: 9px;
+  height: 9px;
   border-radius: 999px;
   background: var(--brass);
   box-shadow: 0 0 0 3px rgba(170, 130, 63, 0.1);
@@ -263,7 +278,7 @@ html[data-theme="dark"] .theme-toggle-track {
 
 html[data-theme="dark"] .theme-toggle-thumb {
   background: var(--ink);
-  transform: translateX(14px);
+  transform: translateX(13px);
 }
 
 .nav-link {
@@ -596,6 +611,11 @@ h3 {
   text-transform: uppercase;
 }
 
+.meta-divider {
+  color: var(--brass);
+  margin: 0 0.55em;
+}
+
 .mini-tags,
 .tag-row span {
   color: var(--navy);
@@ -636,14 +656,14 @@ h3 {
 }
 
 .writing-page {
-  max-width: 780px;
+  max-width: 790px;
   margin: 0 auto;
-  padding: 28px 0 70px;
+  padding: 24px 0 78px;
 }
 
 .writing-header {
   position: relative;
-  padding: 20px 0 40px;
+  padding: 20px 0 44px;
   border-bottom: 1px solid var(--line);
 }
 
@@ -660,11 +680,13 @@ h3 {
 .writing-header h1 {
   margin-bottom: 18px;
   font-size: clamp(2.25rem, 4.9vw, 4.35rem);
+  max-width: 760px;
 }
 
 .writing-header p:not(.kicker) {
   color: var(--muted);
   font-size: 1.16rem;
+  max-width: 680px;
 }
 
 .tag-row {
@@ -682,8 +704,8 @@ h3 {
 }
 
 .prose {
-  max-width: 700px;
-  padding-top: 10px;
+  max-width: 680px;
+  padding-top: 18px;
 }
 
 .prose p,
@@ -692,12 +714,49 @@ h3 {
 }
 
 .prose p {
-  margin: 1.38em 0;
+  margin: 1.45em 0;
 }
 
 .prose h2,
 .prose h3 {
-  margin-top: 2.1em;
+  margin-top: 2.35em;
+  margin-bottom: 0.72em;
+}
+
+.prose h2 {
+  font-size: clamp(1.55rem, 3vw, 2.05rem);
+}
+
+.prose h3 {
+  font-size: 1.28rem;
+}
+
+.prose a {
+  color: var(--navy);
+  font-weight: 650;
+  text-decoration-color: var(--brass);
+  text-decoration-thickness: 1px;
+}
+
+.prose blockquote {
+  margin: 2em 0;
+  border-left: 3px solid var(--brass);
+  background: var(--disclaimer-bg);
+  color: var(--muted);
+  padding: 0.1rem 0 0.1rem 1.25rem;
+}
+
+.prose blockquote p {
+  margin: 1em 0;
+}
+
+.prose ul,
+.prose ol {
+  padding-left: 1.35rem;
+}
+
+.prose li + li {
+  margin-top: 0.45em;
 }
 
 .writing-page .prose p:first-child::first-letter {
@@ -716,6 +775,8 @@ h3 {
 }
 
 .site-footer {
+  display: grid;
+  gap: 10px;
   max-width: 850px;
   padding: 30px 0 48px;
   border-top: 1px solid var(--section-border);
@@ -725,6 +786,19 @@ h3 {
 
 .site-footer p {
   margin: 0;
+}
+
+.footer-principle {
+  color: var(--navy);
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 0.74rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.footer-disclaimer {
+  max-width: 760px;
 }
 
 @media (max-width: 760px) {
@@ -744,6 +818,14 @@ h3 {
 
   .site-nav {
     justify-content: flex-start;
+  }
+
+  .site-project {
+    font-size: 0.62rem;
+  }
+
+  .site-project::before {
+    width: 18px;
   }
 
   main {

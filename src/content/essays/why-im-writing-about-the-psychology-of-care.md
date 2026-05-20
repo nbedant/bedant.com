@@ -1,7 +1,8 @@
 ---
 title: "Why I'm Writing About the Psychology of Care"
 description: "A first note on grief, attention, medicine, and the interior life of caregiving."
-pubDate: 2026-05-19
+date: 2026-05-19
+type: essay
 tags: ["care", "psychology", "medicine"]
 ---
 

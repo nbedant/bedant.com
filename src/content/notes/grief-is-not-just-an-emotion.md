@@ -1,7 +1,8 @@
 ---
 title: "Grief Is Not Just an Emotion"
 description: "A brief reflection on grief as attention, memory, and changed perception."
-pubDate: 2026-05-19
+date: 2026-05-19
+type: fragment
 tags: ["grief", "mind", "memory"]
 ---
 
