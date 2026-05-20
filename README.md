@@ -23,13 +23,15 @@ The static site is generated into `dist/`.
 
 ## Add an Essay
 
-Create a Markdown file in `src/content/essays/`:
+Essays are longer reflective pieces. Create a Markdown file in `src/content/essays/`.
 
 ```md
 ---
-title: "Essay Title"
-description: "A one-sentence summary."
-pubDate: 2026-05-19
+title: "Why Care Changes the Room"
+description: "A one-sentence summary of the essay."
+date: 2026-05-20
+type: essay
+tags: ["care", "medicine", "psychology"]
 draft: false
 ---
 
@@ -40,18 +42,75 @@ The filename becomes the URL slug. For example, `a-careful-title.md` becomes `/e
 
 ## Add a Note
 
-Create a Markdown file in `src/content/notes/` using the same frontmatter:
+Notes are shorter and more flexible. Create a Markdown file in `src/content/notes/`.
+
+### Reading Note
 
 ```md
 ---
-title: "Note Title"
-description: "A one-sentence summary."
-pubDate: 2026-05-19
+title: "On a Passage from The Death of Ivan Ilyich"
+description: "A short note on illness, attention, and being believed."
+date: 2026-05-20
+type: reading
+tags: ["books", "grief", "attention"]
 draft: false
 ---
 
-Write the note here.
+Write the reading note here.
 ```
+
+### Research Note
+
+```md
+---
+title: "Stress Biology and Anticipatory Grief"
+description: "Notes from a paper that might become a longer essay."
+date: 2026-05-20
+type: research
+tags: ["stress biology", "caregiving", "research"]
+draft: false
+---
+
+Write the research note here. Include citations or links in the body when useful.
+```
+
+### Fragment
+
+```md
+---
+title: "The Waiting Room as a Kind of Weather"
+description: "A brief image or unfinished thought."
+date: 2026-05-20
+type: fragment
+tags: ["medicine", "place"]
+draft: false
+---
+
+Write the fragment here.
+```
+
+## Frontmatter Fields
+
+Use these fields at the top of each Markdown file:
+
+- `title`: the title shown on archive and reading pages
+- `description`: a short summary
+- `date`: publish date in `YYYY-MM-DD` format
+- `type`: optional, useful values are `essay`, `reading`, `research`, `fragment`, or `reflection`
+- `tags`: optional list of topics
+- `draft`: set to `true` to hide a piece from the site until it is ready
+
+Older posts may use `pubDate`; new posts should use `date`.
+
+## Check Before Publishing
+
+Run:
+
+```bash
+npm run build
+```
+
+If the build passes, the post is valid and ready to commit.
 
 ## Deploy
 

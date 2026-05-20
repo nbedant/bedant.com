@@ -46,9 +46,11 @@ const themeScript = `
   <body>
     <div class="site-shell">
       <header class="site-header">
-        <a class="site-mark" href="/">
+        <a class="site-mark" href="/" aria-label="Bedant home">
           <span class="site-name">Bedant</span>
-          <span class="site-project">Between Body and Meaning</span>
+          <span class="site-project">
+            <span>Between Body and Meaning</span>
+          </span>
         </a>
         <nav class="site-nav" aria-label="Primary navigation">
           {
@@ -66,11 +68,11 @@ const themeScript = `
               </a>
             ))
           }
-          <button class="theme-toggle" type="button" aria-label="Switch to dark mode" data-theme-toggle>
+          <button class="theme-toggle" type="button" aria-label="Switch to night mode" data-theme-toggle>
             <span class="theme-toggle-track" aria-hidden="true">
               <span class="theme-toggle-thumb"></span>
             </span>
-            <span class="theme-toggle-text" data-theme-toggle-label>Light</span>
+            <span class="theme-toggle-text" data-theme-toggle-label>Day</span>
           </button>
         </nav>
       </header>
@@ -78,7 +80,8 @@ const themeScript = `
         <slot />
       </main>
       <footer class="site-footer">
-        <p>
+        <p class="footer-principle">No ads. No tracking. Reflective and educational only.</p>
+        <p class="footer-disclaimer">
           This site is for reflective and educational writing only. I do not
           provide medical advice. Any clinical or volunteer-related reflections
           are generalized and de-identified to protect privacy.
@@ -95,9 +98,9 @@ const themeScript = `
         root.dataset.theme = theme;
         if (!toggle || !label) return;
         const isDark = theme === "dark";
-        toggle.setAttribute("aria-label", isDark ? "Switch to light mode" : "Switch to dark mode");
+        toggle.setAttribute("aria-label", isDark ? "Switch to day mode" : "Switch to night mode");
         toggle.setAttribute("aria-pressed", String(isDark));
-        label.textContent = isDark ? "Dark" : "Light";
+        label.textContent = isDark ? "Night" : "Day";
       };
 
       const getStoredTheme = () => {

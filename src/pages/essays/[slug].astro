@@ -17,8 +17,9 @@ const { Content } = await render(essay);
 <WritingLayout
   title={essay.data.title}
   description={essay.data.description}
-  pubDate={essay.data.pubDate}
+  date={essay.data.date ?? essay.data.pubDate}
   tags={essay.data.tags}
+  type={essay.data.type}
   collection="essays"
 >
   <Content />
