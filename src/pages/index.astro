@@ -14,13 +14,15 @@ const notes = (await getCollection("notes", ({ data }) => !data.draft))
   <section class="hero">
     <div class="hero-copy">
       <p class="kicker">Between Body and Meaning</p>
-      <h1>Essays on grief, care, medicine, and the inner life of human experience.</h1>
+      <h1>Writing toward the difficult places where bodies, minds, and meaning meet.</h1>
       <p>
-        A quiet archive for thinking about suffering, caregiving, hospice,
-        rural health, psychology, and the human work of medicine.
+        Bedant is a personal archive for essays and notes on medicine, grief,
+        care, psychology, books, biology, research, philosophy, and the
+        unexpected connections that make one subject illuminate another.
       </p>
     </div>
     <div class="room-plate" aria-hidden="true">
+      <div class="navy-rule"></div>
       <div class="lamp"></div>
       <div class="shelf shelf-one"></div>
       <div class="shelf shelf-two"></div>
@@ -30,19 +32,21 @@ const notes = (await getCollection("notes", ({ data }) => !data.draft))
 
   <section class="intro-grid">
     <div>
-      <h2>A place for slow attention</h2>
+      <h2>A quiet room for thinking in public.</h2>
       <p>
-        Bedant is a personal writing site for reflective essays and field notes
-        about the meeting place between biology and meaning. The tone is
-        intimate, careful, and humane: less announcement, more listening.
+        Between Body and Meaning is where I keep longer essays and shorter
+        notes while I learn how to think with more patience. Some pieces begin
+        near hospice or caregiving. Others may begin with a paper, a novel, a
+        phrase from class, or a strange analogy that refuses to leave.
       </p>
     </div>
-    <div class="note-panel">
+    <aside class="note-panel" aria-label="Currently thinking about">
+      <p class="panel-label">Currently thinking about</p>
       <p>
-        The project begins from the belief that care is never only technical.
-        It is also psychological, spiritual, relational, and often wordless.
+        Stress biology, grief before death, attention as a form of care, and
+        why certain books make clinical questions feel more human.
       </p>
-    </div>
+    </aside>
   </section>
 
   <section class="archive-preview" aria-labelledby="recent-essays">
@@ -67,6 +71,11 @@ const notes = (await getCollection("notes", ({ data }) => !data.draft))
             </p>
             <h3>{essay.data.title}</h3>
             <p>{essay.data.description}</p>
+            {
+              essay.data.tags.length > 0 && (
+                <span class="mini-tags">{essay.data.tags.join(" / ")}</span>
+              )
+            }
           </a>
         ))
       }
@@ -95,6 +104,11 @@ const notes = (await getCollection("notes", ({ data }) => !data.draft))
             </p>
             <h3>{note.data.title}</h3>
             <p>{note.data.description}</p>
+            {
+              note.data.tags.length > 0 && (
+                <span class="mini-tags">{note.data.tags.join(" / ")}</span>
+              )
+            }
           </a>
         ))
       }

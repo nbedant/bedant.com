@@ -2,6 +2,7 @@
 title: "Why I'm Writing About the Psychology of Care"
 description: "A first note on grief, attention, medicine, and the interior life of caregiving."
 pubDate: 2026-05-19
+tags: ["care", "psychology", "medicine"]
 ---
 
 Care is often described as a set of tasks: medications to reconcile, appointments to make, meals to prepare, symptoms to watch. Those tasks matter. But they are never the whole story.

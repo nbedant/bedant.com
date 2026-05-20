@@ -3,12 +3,11 @@ import "../styles/global.css";
 
 const {
   title = "Bedant",
-  description = "Essays on grief, care, medicine, and the inner life of human experience.",
+  description = "Essays and notes on medicine, grief, care, psychology, books, biology, philosophy, and the inner life of human experience.",
 } = Astro.props;
 
 const currentPath = Astro.url.pathname;
 const navItems = [
-  { href: "/", label: "Home" },
   { href: "/essays/", label: "Essays" },
   { href: "/notes/", label: "Notes" },
   { href: "/about/", label: "About" },
@@ -40,10 +39,7 @@ const pageTitle = title === "Bedant" ? "Bedant" : `${title} | Bedant`;
                 class:list={[
                   "nav-link",
                   {
-                    active:
-                      item.href === "/"
-                        ? currentPath === "/"
-                        : currentPath.startsWith(item.href),
+                    active: currentPath.startsWith(item.href),
                   },
                 ]}
               >
