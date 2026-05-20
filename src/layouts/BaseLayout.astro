@@ -14,6 +14,21 @@ const navItems = [
 ];
 
 const pageTitle = title === "Bedant" ? "Bedant" : `${title} | Bedant`;
+
+const themeScript = `
+  (() => {
+    const storageKey = "bedant-theme";
+    const root = document.documentElement;
+    const getPreferredTheme = () => {
+      try {
+        const stored = localStorage.getItem(storageKey);
+        if (stored === "light" || stored === "dark") return stored;
+      } catch {}
+      return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+    };
+    root.dataset.theme = getPreferredTheme();
+  })();
+`;
 ---
 
 <!doctype html>
@@ -25,6 +40,7 @@ const pageTitle = title === "Bedant" ? "Bedant" : `${title} | Bedant`;
     <link rel="icon" type="image/png" href="/favicon.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <script is:inline set:html={themeScript}></script>
     <title>{pageTitle}</title>
   </head>
   <body>
@@ -50,6 +66,12 @@ const pageTitle = title === "Bedant" ? "Bedant" : `${title} | Bedant`;
               </a>
             ))
           }
+          <button class="theme-toggle" type="button" aria-label="Switch to dark mode" data-theme-toggle>
+            <span class="theme-toggle-track" aria-hidden="true">
+              <span class="theme-toggle-thumb"></span>
+            </span>
+            <span class="theme-toggle-text" data-theme-toggle-label>Light</span>
+          </button>
         </nav>
       </header>
       <main>
@@ -63,5 +85,39 @@ const pageTitle = title === "Bedant" ? "Bedant" : `${title} | Bedant`;
         </p>
       </footer>
     </div>
+    <script>
+      const storageKey = "bedant-theme";
+      const root = document.documentElement;
+      const toggle = document.querySelector("[data-theme-toggle]");
+      const label = document.querySelector("[data-theme-toggle-label]");
+
+      const applyTheme = (theme) => {
+        root.dataset.theme = theme;
+        if (!toggle || !label) return;
+        const isDark = theme === "dark";
+        toggle.setAttribute("aria-label", isDark ? "Switch to light mode" : "Switch to dark mode");
+        toggle.setAttribute("aria-pressed", String(isDark));
+        label.textContent = isDark ? "Dark" : "Light";
+      };
+
+      const getStoredTheme = () => {
+        try {
+          const stored = localStorage.getItem(storageKey);
+          return stored === "light" || stored === "dark" ? stored : null;
+        } catch {
+          return null;
+        }
+      };
+
+      applyTheme(root.dataset.theme || getStoredTheme() || "light");
+
+      toggle?.addEventListener("click", () => {
+        const nextTheme = root.dataset.theme === "dark" ? "light" : "dark";
+        applyTheme(nextTheme);
+        try {
+          localStorage.setItem(storageKey, nextTheme);
+        } catch {}
+      });
+    </script>
   </body>
 </html>
