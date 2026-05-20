@@ -16,18 +16,21 @@ const notes = (await getCollection("notes", ({ data }) => !data.draft))
       <p class="kicker">Between Body and Meaning</p>
       <h1>Writing toward the difficult places where bodies, minds, and meaning meet.</h1>
       <p>
-        Bedant is a personal archive for essays and notes on medicine, grief,
-        care, psychology, books, biology, research, philosophy, and the
-        unexpected connections that make one subject illuminate another.
+        I write here to think through medicine, grief, care, psychology, books,
+        biology, and the strange ways one subject begins to illuminate another.
       </p>
     </div>
-    <div class="room-plate" aria-hidden="true">
-      <div class="navy-rule"></div>
-      <div class="lamp"></div>
-      <div class="shelf shelf-one"></div>
-      <div class="shelf shelf-two"></div>
-      <div class="chair"></div>
-    </div>
+    <aside class="hero-panel" aria-label="Between Body and Meaning motif">
+      <div class="panel-stamp">Between Body and Meaning</div>
+      <div class="panel-card">
+        <span class="panel-rule"></span>
+        <span class="panel-line panel-line-long"></span>
+        <span class="panel-line"></span>
+        <span class="panel-line panel-line-short"></span>
+        <span class="panel-mark">body / mind / care</span>
+      </div>
+      <div class="panel-footnote">notes toward attention</div>
+    </aside>
   </section>
 
   <section class="intro-grid">
@@ -36,8 +39,8 @@ const notes = (await getCollection("notes", ({ data }) => !data.draft))
       <p>
         Between Body and Meaning is where I keep longer essays and shorter
         notes while I learn how to think with more patience. Some pieces begin
-        near hospice or caregiving. Others may begin with a paper, a novel, a
-        phrase from class, or a strange analogy that refuses to leave.
+        near hospice or caregiving. Others begin with a paper, a novel, a line
+        from class, or a strange analogy that refuses to leave.
       </p>
     </div>
     <aside class="note-panel" aria-label="Currently thinking about">
