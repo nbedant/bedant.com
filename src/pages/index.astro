@@ -1,0 +1,103 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const essays = (await getCollection("essays", ({ data }) => !data.draft))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 2);
+const notes = (await getCollection("notes", ({ data }) => !data.draft))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 2);
+---
+
+<BaseLayout>
+  <section class="hero">
+    <div class="hero-copy">
+      <p class="kicker">Between Body and Meaning</p>
+      <h1>Essays on grief, care, medicine, and the inner life of human experience.</h1>
+      <p>
+        A quiet archive for thinking about suffering, caregiving, hospice,
+        rural health, psychology, and the human work of medicine.
+      </p>
+    </div>
+    <div class="room-plate" aria-hidden="true">
+      <div class="lamp"></div>
+      <div class="shelf shelf-one"></div>
+      <div class="shelf shelf-two"></div>
+      <div class="chair"></div>
+    </div>
+  </section>
+
+  <section class="intro-grid">
+    <div>
+      <h2>A place for slow attention</h2>
+      <p>
+        Bedant is a personal writing site for reflective essays and field notes
+        about the meeting place between biology and meaning. The tone is
+        intimate, careful, and humane: less announcement, more listening.
+      </p>
+    </div>
+    <div class="note-panel">
+      <p>
+        The project begins from the belief that care is never only technical.
+        It is also psychological, spiritual, relational, and often wordless.
+      </p>
+    </div>
+  </section>
+
+  <section class="archive-preview" aria-labelledby="recent-essays">
+    <div class="section-heading">
+      <div>
+        <p class="kicker">Archive</p>
+        <h2 id="recent-essays">Recent essays</h2>
+      </div>
+      <a href="/essays/">All essays</a>
+    </div>
+    <div class="card-grid">
+      {
+        essays.map((essay) => (
+          <a class="writing-card" href={`/essays/${essay.slug}/`}>
+            <p class="card-meta">
+              {essay.data.pubDate.toLocaleDateString("en", {
+                month: "short",
+                day: "numeric",
+                year: "numeric",
+                timeZone: "UTC",
+              })}
+            </p>
+            <h3>{essay.data.title}</h3>
+            <p>{essay.data.description}</p>
+          </a>
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="archive-preview" aria-labelledby="recent-notes">
+    <div class="section-heading">
+      <div>
+        <p class="kicker">Notebook</p>
+        <h2 id="recent-notes">Recent notes</h2>
+      </div>
+      <a href="/notes/">All notes</a>
+    </div>
+    <div class="card-grid">
+      {
+        notes.map((note) => (
+          <a class="writing-card" href={`/notes/${note.slug}/`}>
+            <p class="card-meta">
+              {note.data.pubDate.toLocaleDateString("en", {
+                month: "short",
+                day: "numeric",
+                year: "numeric",
+                timeZone: "UTC",
+              })}
+            </p>
+            <h3>{note.data.title}</h3>
+            <p>{note.data.description}</p>
+          </a>
+        ))
+      }
+    </div>
+  </section>
+</BaseLayout>

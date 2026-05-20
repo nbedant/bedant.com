@@ -1,0 +1,68 @@
+---
+import "../styles/global.css";
+
+const {
+  title = "Bedant",
+  description = "Essays on grief, care, medicine, and the inner life of human experience.",
+} = Astro.props;
+
+const currentPath = Astro.url.pathname;
+const navItems = [
+  { href: "/", label: "Home" },
+  { href: "/essays/", label: "Essays" },
+  { href: "/notes/", label: "Notes" },
+  { href: "/about/", label: "About" },
+];
+
+const pageTitle = title === "Bedant" ? "Bedant" : `${title} | Bedant`;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <title>{pageTitle}</title>
+  </head>
+  <body>
+    <div class="site-shell">
+      <header class="site-header">
+        <a class="site-mark" href="/">
+          <span class="site-name">Bedant</span>
+          <span class="site-project">Between Body and Meaning</span>
+        </a>
+        <nav class="site-nav" aria-label="Primary navigation">
+          {
+            navItems.map((item) => (
+              <a
+                href={item.href}
+                class:list={[
+                  "nav-link",
+                  {
+                    active:
+                      item.href === "/"
+                        ? currentPath === "/"
+                        : currentPath.startsWith(item.href),
+                  },
+                ]}
+              >
+                {item.label}
+              </a>
+            ))
+          }
+        </nav>
+      </header>
+      <main>
+        <slot />
+      </main>
+      <footer class="site-footer">
+        <p>
+          This site is for reflective and educational writing only. I do not
+          provide medical advice. Any clinical or volunteer-related reflections
+          are generalized and de-identified to protect privacy.
+        </p>
+      </footer>
+    </div>
+  </body>
+</html>
