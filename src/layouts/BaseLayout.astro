@@ -1,5 +1,7 @@
 ---
 import "../styles/global.css";
+import MaintenancePage from "../components/MaintenancePage.astro";
+import { siteConfig } from "../site.config";
 
 const {
   title = "Bedant",
@@ -14,6 +16,7 @@ const navItems = [
 ];
 
 const pageTitle = title === "Bedant" ? "Bedant" : `${title} | Bedant`;
+const isMaintenanceMode = siteConfig.maintenanceMode;
 
 const themeScript = `
   (() => {
@@ -44,50 +47,54 @@ const themeScript = `
     <title>{pageTitle}</title>
   </head>
   <body>
-    <div class="site-shell">
-      <header class="site-header">
-        <a class="site-mark" href="/" aria-label="Bedant home">
-          <span class="site-name">Bedant</span>
-          <span class="site-project">
-            <span>Between Body and Meaning</span>
-          </span>
-        </a>
-        <nav class="site-nav" aria-label="Primary navigation">
-          {
-            navItems.map((item) => (
-              <a
-                href={item.href}
-                class:list={[
-                  "nav-link",
-                  {
-                    active: currentPath.startsWith(item.href),
-                  },
-                ]}
-              >
-                {item.label}
-              </a>
-            ))
-          }
-          <button class="theme-toggle" type="button" aria-label="Switch to night mode" data-theme-toggle>
-            <span class="theme-toggle-track" aria-hidden="true">
-              <span class="theme-toggle-thumb"></span>
-            </span>
-            <span class="theme-toggle-text" data-theme-toggle-label>Day</span>
-          </button>
-        </nav>
-      </header>
-      <main>
-        <slot />
-      </main>
-      <footer class="site-footer">
-        <p class="footer-principle">No ads. No tracking. Reflective and educational only.</p>
-        <p class="footer-disclaimer">
-          This site is for reflective and educational writing only. I do not
-          provide medical advice. Any clinical or volunteer-related reflections
-          are generalized and de-identified to protect privacy.
-        </p>
-      </footer>
-    </div>
+    {
+      isMaintenanceMode ? (
+        <MaintenancePage />
+      ) : (
+        <div class="site-shell">
+          <header class="site-header">
+            <a class="site-mark" href="/" aria-label="Bedant home">
+              <span class="site-name">Bedant</span>
+              <span class="site-project">
+                <span>Between Body and Meaning</span>
+              </span>
+            </a>
+            <nav class="site-nav" aria-label="Primary navigation">
+              {navItems.map((item) => (
+                <a
+                  href={item.href}
+                  class:list={[
+                    "nav-link",
+                    {
+                      active: currentPath.startsWith(item.href),
+                    },
+                  ]}
+                >
+                  {item.label}
+                </a>
+              ))}
+              <button class="theme-toggle" type="button" aria-label="Switch to night mode" data-theme-toggle>
+                <span class="theme-toggle-track" aria-hidden="true">
+                  <span class="theme-toggle-thumb"></span>
+                </span>
+                <span class="theme-toggle-text" data-theme-toggle-label>Day</span>
+              </button>
+            </nav>
+          </header>
+          <main>
+            <slot />
+          </main>
+          <footer class="site-footer">
+            <p class="footer-principle">No ads. No tracking. Reflective and educational only.</p>
+            <p class="footer-disclaimer">
+              This site is for reflective and educational writing only. I do not
+              provide medical advice. Any clinical or volunteer-related reflections
+              are generalized and de-identified to protect privacy.
+            </p>
+          </footer>
+        </div>
+      )
+    }
     <script>
       const storageKey = "bedant-theme";
       const root = document.documentElement;
